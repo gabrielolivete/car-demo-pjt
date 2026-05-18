@@ -16,34 +16,45 @@
     --neon: #beff1b;
     --poppins: 'Poppins', sans-serif;
     --league: 'League Gothic', sans-serif;
+    --content-width: 70vw;
 }
 
 body {
     background-color: var(--black);
     color: var(--white);
     font-size: 16px;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 header {
     position: fixed;
     z-index: 100;
-    width: 90vw;
-    left: 50%;
-    transform: translateX(-50%);
-    display: grid;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    padding: 20px 5vw;
+
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    grid-template-columns: 1fr 600px;
-    gap: 100px;
 
     & img {
-        width: 250px;
+        width: clamp(120px, 15vw, 220px);
     }
 
     & nav {
+        margin-right: 12vw;
+
         & ul {
-            display: grid;
-            grid-template-columns: repeat(3, 200px);
+            display: flex;
+            gap: clamp(15px, 2vw, 40px);
+        }
+
+        & li {
+            font-size: clamp(0.8rem, 1vw, 1rem);
+            white-space: nowrap;
+            cursor: pointer;
         }
     }
 }
@@ -52,6 +63,7 @@ section {
     background-image: radial-gradient(var(--principal), var(--secundaria));
     height: 100vh;
     position: relative;
+    overflow: hidden;
 
     & .list {
         width: 70vw;
@@ -67,15 +79,15 @@ section {
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
-                width: 70%;
+                width: clamp(300px, 60vw, 900px);
 
                 & img {
-                    width: 100%;
+                    width: clamp(320px, 58vw, 900px);
                     transform: rotate(-30deg);
                 }
 
                 &::before {
-                    content:'';
+                    content: '';
                     position: absolute;
                     background-color: var(--black);
                     width: 100%;
@@ -90,30 +102,30 @@ section {
 
             & .content {
                 position: absolute;
-                right: 100px;
-                width: 70%;
+                right: 5%;
+                width: min(500px, 45vw);
                 height: 100%;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                align-items: end;
-                gap: 20px;
+                align-items: flex-end;
+                gap: clamp(10px, 2vw, 20px);
 
                 & .car-info {
                     font-weight: bold;
                 }
 
                 & h2 {
-                    font-size: 8em;
-                    line-height: 1em;
+                    font-size: clamp(3rem, 8vw, 8rem);
+                    line-height: 0.9em;
                     font-family: var(--league);
                 }
 
                 & .description {
                     color: var(--grey);
-                    font-size: 14px;
+                    font-size: clamp(0.75rem, 1vw, 1rem);
                     text-align: right;
-                    max-width: 400px;
+                    max-width: min(400px, 90%);
                 }
 
                 & .text-info {
@@ -131,14 +143,6 @@ section {
             }
         }
 
-        &::before {
-            content: '';
-            position: absolute;
-            height: 200px;
-            width: 100%;
-            top: 50%;
-            border-top: 1px solid var(--white);
-        }
     }
 
     .arrows {
@@ -215,7 +219,7 @@ section {
 section {
 
     & .list {
-    --calculation: 1;
+        --calculation: 1;
 
         & .item {
             transform: translateX(calc(100vw * var(--calculation)));
